@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>QR Code Creator</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.css"
+      integrity="sha512-8bHTC73gkZ7rZ7vpqUQThUDhqcNFyYi2xgDgPDHc+GXVGHXq+xPjynxIopALmOPqzo9JZj0k6OqqewdGO3EsrQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <!-- Scripts -->
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"
+      integrity="sha512-894YE6QWD5I59HgZOGReFYm4dnWc1Qt5NtvYSaNcOP+u1T9qYdvdihz0PPSiiqn/+/3e7Jo4EaG7TubfWGUrMQ=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/semantic-ui/2.4.1/semantic.min.js"
+      integrity="sha512-dqw6X88iGgZlTsONxZK9ePmJEFrmHwpuMrsUChjAw1mRUhUITE5QU9pkcSox+ynfLhL15Sv2al5A0LVyDCmtUw=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script>
+    <script
+      type="text/javascript"
+      src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.8.2/angular.min.js"
+      referrerpolicy="no-referrer"
+      crossorigin="anonymous"
+    ></script>
+    <style type="text/css">
+      .preview-img {
+        overflow-y: scroll;
+        overflow-x: scroll;
+        width: 100%;
+        max-height: 500px;
+      }
+    </style>
+    <!-- <script
+      src="https://cdnjs.cloudflare.com/ajax/libs/angular-route/1.8.2/angular-route.min.js"
+      integrity="sha512-5zOAub3cIpqklnKmM05spv4xttemFDlbBrmRexWiP0aWV8dlayEGciapAjBQWA7lgQsxPY6ay0oIUVtY/pivXA=="
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    ></script> -->
+
+    <script src="dist/bundle.js"></script>
+  </head>
+  <body>
+    <div ng-app="QRCodeGenerator">
+      <div class="ui top fixed menu">
+        <div class="header item">QR Code Generator</div>
+        <div class="item">About</div>
+      </div>
+      <div style="height: 50px;"></div>
+
+
+      <div ng-controller="MainController" class="ui container">
+        
+        
+          <div class="ui stackable grid">
+            <div class="eight wide column">
+
+
+              <div ng-if="!imgDataURI" >
+
+                <h2>GET STARTED!!</h2>
+                <p>Input your text to encode, and we'll generate your code.</p>
+              </div>
+              <div ng-if="imgDataURI" style="padding: 1em 0">
+                <h2>Output:</h2>
+                <p>To download the image file, right click and save the image to your computer.</p>
+                
+                <div class="preview-img">
+                  <img ng-src="{{imgDataURI}}">
+                </div>
+                
+                
+              </div>
+            </div>
+            <div class="eight wide column">
+              <div class="ui form">
+                <div class="field">
+                  <label>Text to convert to QR code</label>
+                  <input
+                    class="ui input"
+                    type="text"
+                    ng-model="inputText"
+                    ng-change="generateCode()"
+                    />
+                </div>
+      
+                <h2>Advanced Settings</h2>
+                <div class="ui field">
+                  <label>Dark color</label
+                  ><input
+                    class="ui input"
+                    type="text"
+                    ng-model="options.color.dark"
+                    ng-change="generateCode()"
+                  />
+                </div>
+                <div class="ui field">
+                  <label>Light color</label
+                  ><input
+                    class="ui input"
+                    type="text"
+                    ng-model="options.color.light"
+                    ng-change="generateCode()"
+                  />
+                </div>
+                <div class="ui field">
+                  <label>Width</label
+                  ><input
+                    class="ui input"
+                    type="number"
+                    ng-model="options.width"
+                    ng-change="generateCode()"
+                  />
+                </div>
+                
+                
+              </div> <!-- form -->
+            </div>
+          </div>
+          
+        
+
+        
+      </div><!-- Container -->
+
+        
+        
+        
+      </div>
+    </div>
+  </body>
+</html>
